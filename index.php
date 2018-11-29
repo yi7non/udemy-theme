@@ -39,9 +39,10 @@
 									the_post();
 									?>
 									<div class="entry clearfix">
+										<h2>kakuna</h2>
 										<?php if(has_post_thumbnail()) { ?>
 											<div class="entry-image">
-												<a href="<?php the_permalink(); ?>" data-lightbox="image"><?php the_post_thumbnail('full', array('class' => 'image_fade')); ?></a>
+												<a href="<?php the_permalink();?>" data-lightbox="image"><?php the_post_thumbnail('full', array('class' => 'image_fade')); ?></a>
 											</div>
 									<?php	} ?>
 										<div class="entry-title">

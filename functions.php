@@ -7,6 +7,7 @@
 include(get_template_directory().'/inc/front/enqueue.php');
 include(get_template_directory().'/inc/setup.php');
 include(get_template_directory().'/inc/widgets.php');
+include(get_theme_file_path('/inc/front/comment-field.php'));
 
 
 // Hooks
