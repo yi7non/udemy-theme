@@ -1,7 +1,11 @@
 <div class="entry clearfix">
   <?php if(has_post_thumbnail()) { ?>
     <div class="entry-image">
-      <a href="<?php the_permalink();?>" data-lightbox="image"><?php the_post_thumbnail('full', array('class' => 'image_fade')); ?></a>
+      <a href="<?php the_permalink();?>" data-lightbox="image"><?php if (is_search()) {
+        the_post_thumbnail('large', array('class' => 'image_fade'));
+      } else {
+        the_post_thumbnail('full', array('class' => 'image_fade'));
+      }?></a>
     </div>
 <?php	} ?>
   <div class="entry-title">
