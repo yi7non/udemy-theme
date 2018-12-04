@@ -9,11 +9,6 @@
 	============================================= -->
 	<?php wp_head(); ?>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-	<!-- Document Title
-	============================================= -->
-	<title>Index Template</title>
-
 </head>
 
 <body <?php body_class('no-transition stretched'); ?>>
@@ -32,11 +27,16 @@
 				<!-- Top Links
                 ============================================= -->
 				<div class="top-links">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="faqs.html">FAQs</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
+					<?php
+						 if(has_nav_menu('secondary')) {
+							 wp_nav_menu(array(
+								 'theme_location' => 'secondary',
+								 'container'      => FALSE,
+								 'fallback_cb'    => FALSE,
+								 'depth'          => 1
+							 ));
+						 }
+					 ?>
 				</div><!-- .top-links end -->
 
 			</div>
@@ -47,7 +47,16 @@
                 ============================================= -->
 				<div id="top-social">
 					<ul>
-						<li><a href="#" class="si-facebook"><span class="ts-icon"><i class="icon-facebook"></i></span><span class="ts-text">Facebook</span></a></li>
+						<?php
+							if (get_theme_mod('ju_facebook_handle')) {
+								?><li><a href="https://www.facebook.com/<?php echo get_theme_mod('ju_facebook_handle') ?>" class="si-facebook"><span class="ts-icon"><i class="<?php if(get_theme_mod('ju_facebook_icon_handle')) {
+									echo get_theme_mod('ju_facebook_icon_handle');
+								} else {
+									echo 'icon-facebook';
+								}?>"></i></span><span class="ts-text">Facebook</span></a></li><?php
+							}
+						 ?>
+
 						<li><a href="#" class="si-twitter"><span class="ts-icon"><i class="icon-twitter"></i></span><span class="ts-text">Twitter</span></a></li>
 						<li><a href="#" class="si-instagram"><span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span></a></li>
 						<li><a href="tel:+91.11.85412542" class="si-call"><span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text">+91.11.85412542</span></a></li>
@@ -70,11 +79,20 @@
 			<!-- Logo
             ============================================= -->
 			<div id="logo">
-				<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png">Udemy</a>
+				<?php
+					// if(has_custom_logo = NULL) {
+					// 	the_custom_logo();
+					// } else {
+						?><a href="<?php echo esc_url(home_url('/')) ?>" class="standard-logo" data-dark-logo="images/logo-dark.png"><?php bloginfo('name'); ?></a><?php
+					// }
+				 ?>
+
 			</div><!-- #logo end -->
 
 			<div class="top-advert">
-				<img src="images/magazine/ad.jpg" alt="Ad">
+				<?php if (function_exists('quads_ad'))
+            echo quads_ad( array('location' => 'udemy_header') );
+       ?>
 			</div>
 
 		</div>
